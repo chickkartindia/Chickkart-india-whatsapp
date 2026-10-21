@@ -52,9 +52,9 @@ $("form").onsubmit=async e=>{e.preventDefault();$("error").hidden=true;const nam
  const order={name,phone,address,shopId:state.shop.id,shopName:state.shop.name,itemId:state.item.id,cut:state.item.name,quantityGrams:state.grams,quantityKg:state.grams/1000,unitPrice:Number(state.item.price),chickenPrice:itemCost(),deliveryFee:Number(cfg.deliveryFee),platformFee:Number(cfg.platformFee),total:total(),currency:"INR",createdAt:new Date().toISOString()};
  const btn=$("form").querySelector('button[type="submit"]');btn.disabled=true;btn.textContent="Saving order…";
  try{const saved=await saveOrder(order);order.orderId=saved.orderId;order.saved=saved.saved;$("ref").textContent=order.orderId;
- const message=["🐔 *Chickkart order request*",`Order ID: ${order.orderId}`,`Name: ${name}`,`Phone: ${phone}`,`Shop: ${state.shop.name}`,`Cut: ${state.item.name}`,`Quantity: ${qtyText(state.grams)}`,`Chicken price: ${money(itemCost())}`,`Delivery fee: ${money(cfg.deliveryFee)}`,`Platform fee: ${money(cfg.platformFee)}`,`*Total: ${money(total())}*`,`Address: ${address||"Will share location in WhatsApp"}`,"","Please confirm availability. I will share my WhatsApp location pin in this chat."].join("\n");
+ const message=["🐔 *Chickkart order request*",`Order ID: ${order.orderId}`,`Name: ${name}`,`Phone: ${phone}`,"","Please confirm availability. I will share my WhatsApp location pin in this chat."].join("\n");
  state.lastUrl=`https://wa.me/${cfg.whatsappNumber}?text=${encodeURIComponent(message)}`;go("success");
- if(saved.saved){$("notice").textContent="Order saved to Google Sheets. WhatsApp is ready to open.";$("notice").hidden=false;}else{$("notice").textContent="Google Sheets is not configured yet. This reference is temporary and the order was NOT saved centrally.";$("notice").hidden=false;}
+ if(saved.saved){$("notice").textContent="Order saved. WhatsApp is ready to open.";$("notice").hidden=false;}else{$("notice").textContent="Google Sheets is not configured yet. This reference is temporary and the order was NOT saved centrally.";$("notice").hidden=false;}
  window.location.href=state.lastUrl;
  }catch(ex){err(ex.message||"Unable to save order.");}finally{btn.disabled=false;btn.textContent="Save order & open WhatsApp →";}
 };
