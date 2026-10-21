@@ -5,7 +5,7 @@ window.CHICKKART_CONFIG = {
   platformFee: 5,
   /* Paste the deployed Google Apps Script /exec URL here to save orders to Sheets.
      Leave blank for WhatsApp-only mode (no central order record). */
-  orderEndpoint: "",
+  orderEndpoint: "https://script.google.com/macros/s/AKfycby24DweCp0zTSzIzUKehJ_6a6zZ8gCJr85LL_DzQMNygXf74sQmExKyq8nDOqCPSXpT/exec",
   shops: [
     {id:"varma",name:"Varma Chicken",description:"Fresh chicken cuts prepared to order.",address:"Add shop address here",image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=900&q=80",menu:[
       {id:"curry",name:"Curry cut",description:"Regular curry pieces",price:230},
